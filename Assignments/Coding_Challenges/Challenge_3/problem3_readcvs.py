@@ -50,4 +50,6 @@ for i in range(len(larger_than_2std)+len(less_than_2std)):
     anomoly.append(np.concatenate((larger_than_2std, less_than_2std), axis=None)[i])
 print(anomoly)
 
-
+# Numpy is designed for this kind of processing. So well done for using it, clearly you know what you are doing.
+# However, your anomaly code is a little different to the simple definition of anomaly (value - overall_mean),
+# you should have some negative values in the 1950's 1960's turning positive later on in the series.

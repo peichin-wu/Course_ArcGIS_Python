@@ -25,30 +25,23 @@
 import os, arcpy
 from arcpy.sa import *
 listMonth = ["02", "04", "05", "07", "10", "11"]
-outputDirectory = r"D:\URI\Spring2021\NRS528\Data\06_Cheating\Step_3_data_lfs"
+outputDirectory = r"C:\Data\Students_2021\1_Data"
 if not os.path.exists(outputDirectory):
     os.mkdir(outputDirectory)
 
 
 for month in listMonth:
-    arcpy.env.workspace = r"D:\URI\Spring2021\NRS528\Data\06_Cheating\Step_3_data_lfs\2015" + str(month)
+    arcpy.env.workspace = os.path.join(outputDirectory, r"2015" + str(month))
 
     listRasters = arcpy.ListRasters("*", "TIF")
     print("For year: " + month + ", there are: " + str(len(listRasters)) + " bands to process.")
 
     listRasters_B4 = [x for x in listRasters if "_B4.tif" in x]
-    print("Compositing Bands for " + month)
-    arcpy.CompositeBands_management(in_rasters=listRasters_B4, out_raster=os.path.join(outputDirectory, "2015" + str(month) + "_B4.tif"))
-    print("Compositing Bands for " + month + " finished.")
 
     listRasters_B5 = [x for x in listRasters if "_B5.tif" in x]
-    print("Compositing Bands for " + month)
-    arcpy.CompositeBands_management(in_rasters=listRasters_B5,out_raster=os.path.join(outputDirectory, "2015" + str(month) + "_B5.tif"))
-    print("Compositing Bands for " + month + " finished.")
-for month in listMonth:
-    arcpy.env.workspace = r"D:\URI\Spring2021\NRS528\Data\06_Cheating\Step_3_data_lfs"
-    nir = Raster("2015" + str(month) + "_B5.tif")
-    vis = Raster("2015" + str(month) + "_B4.tif")
+
+    nir = Raster(listRasters_B5[0])
+    vis = Raster(listRasters_B4[0])
     output_raster = (nir - vis) / (nir + vis)
-    output_raster.save(r"D:\URI\Spring2021\NRS528\Data\06_Cheating\Step_3_data_lfs\2015" + str(month) + "_nvdi.tif")
+    output_raster.save(os.path.join(outputDirectory, "2015" + str(month) + "_nvdi.tif"))
 

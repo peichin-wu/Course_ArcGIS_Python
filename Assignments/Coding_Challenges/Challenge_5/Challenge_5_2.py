@@ -1,7 +1,7 @@
 
 import arcpy
 arcpy.env.overwriteOutput = True  # If you get "already exists error" even when True, ensure file is not open.
-arcpy.env.workspace = r"D:\URI\Spring2021\NRS528\Data\05_Scripts"
+arcpy.env.workspace = r"C:\Data\Students_2021\Wu\Assignments\Coding_Challenges\Challenge_5"
 
 # 0. Seperate two species to 2 different CSV files.
 # import pandas as pd
