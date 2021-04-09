@@ -1,7 +1,10 @@
-
+## WHJAT THE CODE DOES, PROVIDE COMMENT
 
 import arcpy
-arcpy.env.scratchWorkspace = r"D:\URI\Spring2021\NRS528\Data\Midterm_Tool_Challenge\Data"
+
+arcpy.env.overwriteOutput = True
+
+arcpy.env.scratchWorkspace = r"C:\Data\Students_2021\Wu\Assignments\Coding_Challenges\Midterm_Tool_Challenge\Data"
 
 Rivers = r"Data\Rivers.shp"
 towns = r"Data\towns.shp"
